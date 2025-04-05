@@ -5,6 +5,7 @@ import LogIn from "../components/LogIn";
 import Detail from "../components/Detail"; // Import trang chi tiết sản phẩm
 import Cart from "../components/Cart"; // Import trang giỏ hàng
 import Profile from "../components/Profile"; // Import trang giỏ hàng
+import Chat from "../components/Chat"; // Import trang giỏ hàng
 import CheckOut from "../components/CheckOut"; // Import trang giỏ hàng
 import ProductManage from "../components/ProductManage"; // Import trang giỏ hàng
 import OrderManage from "../components/OrderManage"; // Import trang giỏ hàng
@@ -40,6 +41,10 @@ export const routes: RouteObject[] = [
   {
     path: "/profile", // Thêm route cho giỏ hàng
     element: <Profile />,
+  },
+  {
+    path: "/chat", // Thêm route cho giỏ hàng
+    element: <Chat />,
   },
   {
     path: "/checkout", // Thêm route cho giỏ hàng

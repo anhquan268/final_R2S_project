@@ -55,7 +55,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="container mx-auto py-12 mt-24">
+    <div className="container mx-auto py-12">
       <div className="flex items-center space-x-2 text-gray-500 text-[14px]">
         <a href={isAdmin ? "/productmanage" : "/"} className="hover:underline">Home</a>
         <img src="/CrossLine.svg" alt="CrossLine" className="w-[7px]" />
@@ -77,11 +77,11 @@ const Cart = () => {
   <tbody>
     {updatedCart.length > 0 ? (updatedCart.map((item) => (
       <tr key={item.id} className="shadow-md rounded">
-        <td className="p-4 flex items-center gap-2 text-[16px]">
+        <td className="p-4 sm:flex items-center gap-2 text-[16px]">
           <img src={item.image} alt={item.name} className="hidden sm:flex w-16 h-16" />
           {item.name}
         </td>
-        <td className="p-4 text-[16px]">${item.price}</td>
+        <td className="p-2 text-[16px]">${item.price}</td>
         <td className="p-4 text-left"> 
         <div className="flex items-left gap-2">
               {/* Input để nhập số lượng */}
@@ -97,7 +97,7 @@ const Cart = () => {
         </td>
 
         <td className="p-4 text-[16px]">${ (item.price * item.quantity).toFixed(2) }</td>
-        <td className="p-4 text-center">
+        <td className="p-2 text-center">
           <button
             className="text-[16px] text-red-500 hover:underline"
             onClick={() => handleRemoveItem(item.id)}
@@ -144,38 +144,38 @@ const Cart = () => {
         </div>
       </div>
       {cart.length > 0 && (
-      <div className="grid grid-cols-[60%_40%] gap-10 mt-10">
+      <div className="grid grid-cols-[60%_40%] lg:gap-10 mt-10">
         <div className="justify-between">
 
         <div className="flex">
             <input 
                 type="text" 
                 placeholder="Coupon Code" 
-                className="border border-black px-4 py-2 w-[300px] h-[56px] text-gray-500 text-[16px] rounded"
+                className="border border-black px-4 py-2 w-full max-w-[250px] h-[56px] text-gray-500 text-[14px] md:text-[16px] rounded"
             />
-            <button className="bg-red-500 text-white px-6 py-2 mx-4 text-[16px] w-[211px] h-[56px] rounded">
+            <button className="bg-red-500 text-white px-6 py-2 mx-4 text-[14px] md:text-[16px] w-full lg:w-[211px] h-[56px] rounded">
                 Apply Coupon
             </button>
         </div>
         </div>
         
-        <div className="border border-black p-6 rounded w-[400px]">
+        <div className="border border-black p-6 rounded w-full lg:w-[300px] xl:w-[400px]">
           <h2 className="text-[20px] font-medium mb-4">Cart Total</h2>
-          <div className="flex justify-between mb-4 text-[16px] border-b border-gray-400">
+          <div className="flex justify-between mb-4 text-[14px] md:text-[16px] border-b border-gray-400">
             <span>Subtotal:</span>
             <span>${cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</span>
             </div>
-          <div className="flex justify-between mb-4 text-[16px] border-b border-gray-400">
+          <div className="flex justify-between mb-4 text-[14px] md:text-[16px] border-b border-gray-400">
             <span>Shipping:</span>
             <span>Free</span>
           </div>
-          <div className="flex justify-between text-[16px]">
+          <div className="flex justify-between text-[14px] md:text-[16px]">
             <span>Total:</span>
             <span>${cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</span>
             </div>
           <button
             onClick={handleCheckout}
-            className="w-full mt-4 ml-12 w-[260px] h-[56px] bg-red-500 text-white rounded">
+            className="w-full mt-4 w-full lg:w-[260px] xl:ml-12 h-[56px] bg-red-500 text-white rounded">
             Proceed to checkout
           </button>
         </div>

@@ -48,7 +48,7 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header className="w-full border-b fixed top-0 left-0 bg-white z-50">
+    <header className="w-full border-b top-0 left-0 bg-white z-50">
       {/* Banner khuyến mãi */}
       <div className="bg-black text-white flex justify-between items-center py-2 px-8 text-sm h-12 gap-x-16">
       {/* Văn bản khuyến mãi */}
@@ -69,34 +69,37 @@ const Header: React.FC = () => {
         <h1 className="text-[24px] font-bold">Exclusive</h1>
 
         {/* Danh mục menu */}
-        <div className="hidden md:flex md:space-x-2 md:text-sm lg:text-[16px] xl:text-[16px] 2xl:text-[16px] lg:space-x-8 xl:space-x-12 2xl:space-x-12 space-x-8 text-[16px]">
+        <div className="hidden md:flex md:space-x-4 md:text-sm lg:text-[16px] lg:space-x-12 space-x-8 text-[16px]">
           <a href={isAdmin ? "/productmanage" : "/"} className="hover:border-b-2 hover:border-black">Home</a>
-          {!isAdmin && (
-            <a href="#" className="hover:border-b-2 hover:border-black">Contact</a>
-          )}
-          {isAdmin && (
+          {isAdmin ? (
             <a href="/ordermanage" className="hover:border-b-2 hover:border-black">Orders</a>
+          ) : (
+            <a href="#" className="hover:border-b-2 hover:border-black">About</a>
           )}
-          <a href="#" className="hover:border-b-2 hover:border-black">About</a>
-          {!isLoggedIn && (
+          {isLoggedIn ? (
+            <a href="/chat" className="hover:border-b-2 hover:border-black">Contact</a>
+          ) : (
+            <a href="/login" className="hover:border-b-2 hover:border-black">Sign In</a>
+          )}
+          {isLoggedIn ? (
+            <a href="/profile" className="hover:border-b-2 hover:border-black">Account</a>
+          ) : (
             <a href="/signup" className="hover:border-b-2 hover:border-black">Sign Up</a>
           )}
-          {isLoggedIn && (
-            <a href="/profile" className="hover:border-b-2 hover:border-black">Account</a>
-          )}
         </div>
+
 
         <div className="flex items-center space-x-4">
 
         {/* Ô tìm kiếm */}
-        <div className="flex sm:w-[243px] md:w-[195px] lg:w-[243px] xl:w-[243px] 2xl:w-[243px] items-center bg-gray-100 px-4 py-2 rounded-lg text-[12px] w-[220px] h-[38px]">
+        <div className="flex sm:w-[243px] md:w-[195px] lg:w-[243px] xl:w-[243px] 2xl:w-[243px] items-center bg-gray-100 px-4 py-2 rounded-lg text-[12px] w-[180px] h-[38px]">
             <input
             type="text"
             placeholder="What are you looking for?"
-            className="bg-transparent outline-none cursor-pointer text-[12px] sm:text-[12px] md:text-[11px] lg:text-[12px] xl:text-[12px] 2xl:text-[12px] flex-1"
+            className="bg-transparent outline-none cursor-pointer text-[10px] sm:text-[12px] md:text-[11px] lg:text-[12px] xl:text-[12px] 2xl:text-[12px] flex-1"
             aria-label="Search"
             />
-            <img src="/SearchIcon.svg" alt="Search" className="w-4 h-4 cursor-pointer" />
+            <img src="/SearchIcon.svg" alt="Search" className="w-3 h-3 sm:w-4 sm:h-4 cursor-pointer" />
         </div>
 
         {/* Biểu tượng giỏ hàng và yêu thích */}
@@ -150,21 +153,23 @@ const Header: React.FC = () => {
         </div>
       </nav>
       <nav className="md:hidden flex items-center justify-center max-w-7xl mx-auto p-2">
-       {/* Danh mục menu */}
-       <div className="space-x-8 text-[16px]">
+        {/* Danh mục menu */}
+        <div className="space-x-8 text-[16px]">
           <a href={isAdmin ? "/productmanage" : "/"} className="hover:border-b-2 hover:border-black">Home</a>
-          {!isAdmin && (
-            <a href="#" className="hover:border-b-2 hover:border-black">Contact</a>
-          )}
-          {isAdmin && (
+          {isAdmin ? (
             <a href="/ordermanage" className="hover:border-b-2 hover:border-black">Orders</a>
+          ) : (
+            <a href="#" className="hover:border-b-2 hover:border-black">About</a>
           )}
-          <a href="#" className="hover:border-b-2 hover:border-black">About</a>
-          {!isLoggedIn && (
-            <a href="/signup" className="hover:border-b-2 hover:border-black">Sign Up</a>
+          {isLoggedIn ? (
+            <a href="/chat" className="hover:border-b-2 hover:border-black">Contact</a>
+          ) : (
+            <a href="/login" className="hover:border-b-2 hover:border-black">Sign In</a>
           )}
-          {isLoggedIn && (
+          {isLoggedIn ? (
             <a href="/profile" className="hover:border-b-2 hover:border-black">Account</a>
+          ) : (
+            <a href="/signup" className="hover:border-b-2 hover:border-black">Sign Up</a>
           )}
         </div>
       </nav>

@@ -59,13 +59,13 @@ const LogIn = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-white">
-      <div className="flex bg-white overflow-hidden w-[1000px] h-[500px]">
+    <div className="flex h-[400px] md:h-[600px] justify-center mt-20 bg-white">
+      <div className="flex bg-white overflow-hidden w-[1000px] h-[300px] md:h-[500px]">
         <div className="w-1/2 hidden md:block rounded">
           <img src="/SideImage.svg" alt="Sign Up" className="w-full h-full object-cover rounded" />
         </div>
 
-        <div className="w-full md:w-1/2 p-12">
+        <div className="w-full md:w-1/2 p-2 md:p-8 md:mt-4 lg:mt-0 lg:p-12">
           <h2 className="text-[36px] mb-1 font-[Inter]">Log in to Exclusive</h2>
           <p className="mb-8 text-gray-600 text-[16px]">Enter your details below</p>
 
@@ -105,7 +105,7 @@ const LogIn = () => {
               <button type="submit" disabled={isPending} className="w-[143px] bg-red-500 text-white py-2 rounded text-[16px]">
                 {isPending ? "Logging in..." : "Log In"}
               </button>
-              <a href="/forgot-password" className="text-red-500">Forgot Password?</a>
+              <a href="/forgot-password" className="text-red-500 md:ml-8 lg:ml-0">Forgot Password?</a>
             </div>
           </form>
         </div>

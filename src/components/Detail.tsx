@@ -78,7 +78,7 @@ const Detail = () => {
 
   return (
     <div>    
-      <div className="container mx-auto py-12 mt-20 grid grid-cols-1 md:grid-cols-[60%_40%] gap-10">
+      <div className="container mx-auto py-12 grid grid-cols-1 md:grid-cols-[60%_40%] gap-10">
         {/* Left: Image Gallery */}
         <div className="flex gap-4 items-start w-full">
           {/* Ảnh nhỏ (bên trái) */}

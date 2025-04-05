@@ -201,7 +201,7 @@ const ProductManage = () => {
 
   return (
     <div className="mx-auto py-12 w-full px-4">
-      <h2 className="text-[36px] font-semibold mb-8 mt-20 font-[Inter]">Manage Products</h2>
+      <h2 className="text-[36px] font-semibold mb-8 font-[Inter]">Manage Products</h2>
       <button className="bg-yellow-300 text-[16px] text-black px-3 py-1 rounded mb-6" onClick={() => handleCreateProduct(defaultProduct)}>          
         + Create Product
       </button>

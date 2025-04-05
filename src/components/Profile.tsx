@@ -101,7 +101,7 @@ const Profile: React.FC = () => {
   
   
   return (
-    <div className="container mx-auto py-12 mt-24">
+    <div className="container mx-auto py-12">
     <div className="flex items-center space-x-2 text-gray-500 text-[14px]">
       <a href={isAdmin ? "/productmanage" : "/"} className="hover:underline">Home</a>
       <img src="/CrossLine.svg" alt="CrossLine" className="w-[7px]" />
@@ -109,29 +109,29 @@ const Profile: React.FC = () => {
     </div>
     <div className="flex min-h-screen mt-10">
       {/* Sidebar */}
-      <aside className="w-1/3 bg-white rounded-lg">
-        <h2 className="text-[16px] font-medium mb-4">Manage My Account</h2>
+      <aside className="hidden md:block w-1/3 bg-white rounded-lg">
+        <h2 className="text-[14px] lg:text-[16px] font-medium mb-4">Manage My Account</h2>
         <ul className="space-y-3 ml-8">
-          <li className="text-[16px] text-gray-600 hover:text-red-500 cursor-pointer">My Profile</li>
-          <li className="text-[16px] text-gray-600 hover:text-red-500 cursor-pointer">
+          <li className="text-[14px] lg:text-[16px] text-gray-600 hover:text-red-500 cursor-pointer">My Profile</li>
+          <li className="text-[14px] lg:text-[16px] text-gray-600 hover:text-red-500 cursor-pointer">
             Address Book
           </li>
-          <li className="text-[16px] text-gray-600 hover:text-red-500 cursor-pointer">
+          <li className="text-[14px] lg:text-[16px] text-gray-600 hover:text-red-500 cursor-pointer">
             My Payment Options
           </li>
         </ul>
 
-        <h2 className="text-[16px] font-medium mt-6 mb-4">My Orders</h2>
+        <h2 className="text-[14px] lg:text-[16px] font-medium mt-6 mb-4">My Orders</h2>
         <ul className="space-y-3 ml-8">
-          <li className="text-[16px] text-gray-600 hover:text-red-500 cursor-pointer">
+          <li className="text-[14px] lg:text-[16px] text-gray-600 hover:text-red-500 cursor-pointer">
             My Returns
           </li>
-          <li className="text-[16px] text-gray-600 hover:text-red-500 cursor-pointer">
+          <li className="text-[14px] lg:text-[16px] text-gray-600 hover:text-red-500 cursor-pointer">
             My Cancellations
           </li>
         </ul>
 
-        <h2 className="text-[16px] font-medium mt-6 mb-4">My Wishlist</h2>
+        <h2 className="text-[14px] lg:text-[16px] font-medium mt-6 mb-4">My Wishlist</h2>
         <button
           onClick={handleLogout}
           className="mt-4 bg-red-500 text-[16px] text-white py-2 px-4 rounded-lg hover:bg-red-600"
@@ -141,10 +141,10 @@ const Profile: React.FC = () => {
       </aside>
 
       {/* Profile Form */}
-      <div className="w-full h-full p-8 bg-white shadow-lg rounded-l ml-16">
+      <div className="w-full h-full p-8 bg-white shadow-lg rounded-l md:ml-16">
         <h2 className="text-[20px] font-medium text-red-500 mb-6">Edit Your Profile</h2>
         
-        <div className="grid grid-cols-[1.5fr_1fr] gap-6">
+        <div className="md:grid md:grid-cols-[1.5fr_1fr] gap-6">
         {/* First Name */}
           <div>
             <label className="block text-[16px] mb-1">First Name<a className="text-red-500">*</a></label>
@@ -152,7 +152,7 @@ const Profile: React.FC = () => {
               type="text"
               value={user?.firstname || ""}
               onChange={(e) => setUser((prev) => prev ? { ...prev, firstname: e.target.value } : null)}
-              className="w-full p-2 border border-gray-300 rounded bg-white text-[16px] text-gray-600"
+              className="w-full p-2 border border-gray-300 rounded bg-white text-[16px] text-gray-600 mb-4 md:mb-0"
             />
           </div>
 
@@ -163,7 +163,7 @@ const Profile: React.FC = () => {
               type="text"
               value={user?.lastname || ""}
               onChange={(e) => setUser((prev) => prev ? { ...prev, lastname: e.target.value } : null)}
-              className="w-full p-2 border border-gray-300 rounded bg-white text-[16px] text-gray-600"
+              className="w-full p-2 border border-gray-300 rounded bg-white text-[16px] text-gray-600 mb-4 md:mb-0"
             />
           </div>
 
@@ -176,7 +176,7 @@ const Profile: React.FC = () => {
             <input
               type="email"
               value={user?.email || ""}
-              className="w-full p-2 border border-gray-300 rounded bg-gray-100 text-[16px] text-gray-600"
+              className="w-full p-2 border border-gray-300 rounded bg-gray-100 text-[16px] text-gray-600 mb-4 md:mb-0"
               disabled
             />
           </div>

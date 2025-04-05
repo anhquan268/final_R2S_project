@@ -60,7 +60,7 @@ const OurProduct = () => {
 
   return (
     <div className="mx-auto py-12 w-full px-4">
-      <h2 className="text-[36px] font-semibold mb-6 mt-20 font-[Inter]">Explore Our Products</h2>
+      <h2 className="text-[36px] font-semibold mb-6 font-[Inter]">Explore Our Products</h2>
       <div className="relative w-full max-w-md mb-6">
         <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden shadow-sm">
           <span className="px-3">

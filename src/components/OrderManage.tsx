@@ -97,24 +97,27 @@ const OrderManage = () => {
     },
   });
 
-  if (isLoading) return <p>Loading orders...</p>;
-  if (error) return <p>Error loading orders</p>;
-
   return (
     <div className="container mx-auto py-12">
-      <h2 className="text-[36px] font-semibold mb-8 mt-20 font-[Inter]">Order Management</h2>
-      <table className="min-w-full border-separate border-spacing-y-4">
-        <thead className="shadow-md rounded">
-          <tr>
-            <th className="p-4 w-fit text-[16px]">ID</th>
-            <th className="p-4 w-fit text-[16px]">User</th>
-            <th className="p-4 w-fit text-[16px]">Name</th>
-            <th className="p-4 w-fit text-[16px]">Address</th>
-            <th className="p-4 w-fit text-[16px]">Total Amount</th>
-            <th className="p-4 w-fit text-[16px]">Status</th>
-            <th className="p-4 w-fit text-[16px]">Actions</th>
-          </tr>
-        </thead>
+      <h2 className="text-[36px] font-semibold mb-8 font-[Inter]">Order Management</h2>
+     
+        {isLoading ? (
+          <p className="col-span-4 text-center text-[12px] md:text-[16px]">Loading...</p>
+        ) : error ? (
+          <p className="col-span-4 text-center text-red-500">Error loading orders</p>
+        ) : (
+          <table className="min-w-full border-separate border-spacing-y-4">
+          <thead className="shadow-md rounded">
+            <tr>
+              <th className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">ID</th>
+              <th className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">User</th>
+              <th className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">Name</th>
+              <th className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">Address</th>
+              <th className="p-2 md:p-4 w-fit text-[12px] md:text-[16px] text-left">Total Amount</th>
+              <th className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">Status</th>
+              <th className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">Actions</th>
+            </tr>
+          </thead>
         <tbody>
             {orders.length === 0 ? (
                 <tr>
@@ -133,13 +136,13 @@ const OrderManage = () => {
             })
             .map((order: Order) => (
             <tr key={order.id} className="shadow-md rounded">
-              <td className="p-4 w-fit text-[16px] text-center">{order.id}</td>
-              <td className="p-4 w-fit text-[16px] text-center">{order.user_id}</td>
-              <td className="p-4 w-fit text-[16px]">{order.name}</td>
-              <td className="p-4 w-fit text-[16px]">{order.address}</td>
-              <td className="p-4 w-fit text-[16px]">${order.total_amount}</td>
-              <td className="p-4 w-fit text-[16px] text-center">{order.status}</td>
-              <td className="p-4 w-fit text-[16px] space-x-2">
+              <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px] text-center">{order.id}</td>
+              <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px] text-center">{order.user_id}</td>
+              <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">{order.name}</td>
+              <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">{order.address}</td>
+              <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">${order.total_amount}</td>
+              <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px] text-center">{order.status}</td>
+              <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px] space-x-2">
                 {order.status === "pending" && (
                     <button
                     className="bg-green-500 text-white px-3 py-1 rounded"
@@ -165,7 +168,9 @@ const OrderManage = () => {
             </tr>
           )))}
         </tbody>
-      </table>
+        </table>
+        )}
+      
     </div>
   );
 };
