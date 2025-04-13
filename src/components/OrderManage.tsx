@@ -157,13 +157,13 @@ const OrderManage = () => {
                   onClick={() => mutationUpdate.mutate({ orderId: order.id, status: 'refused' })}
                 >
                   Refuse
-                </button>
+                </button>*/}
                 <button
                   className="bg-red-500 text-white px-3 py-1 rounded"
                   onClick={() => mutationDelete.mutate(order.id)}
                 >
                   Delete
-                </button> */}
+                </button>
               </td>
             </tr>
           )))}

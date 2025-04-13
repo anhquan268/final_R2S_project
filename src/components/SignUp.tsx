@@ -6,8 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
+    name: "",
     address: "",
     email: "",
     password: "",
@@ -27,7 +26,7 @@ const SignUp = () => {
   };
 
   // Hàm gọi API đăng ký
-  const registerUser = async (formData: { email: string; password: string; firstname: string; lastname: string; address: string }) => {
+  const registerUser = async (formData: { email: string; password: string; name: string; address: string }) => {
     if (!validatePassword(formData.password)) {
       toast.error("Password must be 8+ characters with an uppercase, lowercase, and number.", {
         position: "top-right",
@@ -62,7 +61,7 @@ const SignUp = () => {
 
   const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!formData.email || !formData.password || !formData.firstname || !formData.lastname) {
+    if (!formData.email || !formData.password || !formData.name) {
       toast.error("One or more fields are empty!");
       return;
     }
@@ -83,20 +82,13 @@ const SignUp = () => {
             <div className="flex gap-4 mb-4">
               <input
               type="text"
-              name="firstname"
-              placeholder="First Name"
-              value={formData.firstname}
+              name="name"
+              placeholder="Full Name"
+              value={formData.name}
               onChange={handleChange}
-              className="w-1/2 border-b border-gray-400 text-gray-600 text-[16px] outline-none"
+              className="w-full border-b border-gray-400 text-gray-600 text-[16px] outline-none"
               />
-              <input
-              type="text"
-              name="lastname"
-              placeholder="Last Name"
-              value={formData.lastname}
-              onChange={handleChange}
-              className="w-1/2 border-b border-gray-400 text-gray-600 text-[16px] outline-none"
-              />
+             
             </div>
             <input
               type="text"

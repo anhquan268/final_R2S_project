@@ -4,8 +4,7 @@ import { toast } from "react-toastify";
 
 const Profile: React.FC = () => {
   const [user, setUser] = useState<{
-    firstname: string;
-    lastname: string;
+    name: string;
     email: string;
     address: string;
     roles: string[];
@@ -52,50 +51,56 @@ const Profile: React.FC = () => {
       return;
     }
   
-    const { firstname, lastname, address } = user;
+    const { name, address } = user;
   
     // Kiểm tra nếu có trường nào rỗng
-    if (!firstname || !lastname || !address) {
+    if (!name || !address) {
       toast.error("One or more fields are empty.");
       return;
     }
   
-    console.log("Sending update request with data:", { firstname, lastname, address });
+    console.log("Sending update request with data:", { name, address });
   
     try {
+      if (!name || name.length < 3 || !address || address.length < 3) {
+        toast.error("Name and address must be at least 3 characters long.");
+        return;
+      }
       const response = await fetch("https://devapi.uniscore.vn/uri/api/auth/update-profile", {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
-        body: JSON.stringify({ firstname, lastname, address }),
+        body: JSON.stringify({ name, address }),
       });
-  
+    
       if (!response.ok) {
-        toast.error("Update failed! Please try again.");
+        const errorData = await response.json().catch(() => ({}));
+        console.error("API error:", errorData);
+        toast.error(errorData.message || "Update failed! Please try again.");
+        return;
       }
-  
+    
+    
       toast.success("Profile updated successfully!");
-
+    
       // Lấy user hiện tại từ localStorage
       const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
-      
+    
       // Cập nhật chỉ các trường cần thay đổi
       const updatedUser = {
-        ...storedUser, // Giữ nguyên các dữ liệu khác
-        firstname: firstname,
-        lastname: lastname,
-        address: address,
+        ...storedUser,
+        name,
+        address,
       };
-      
-      // Lưu lại dữ liệu mới vào localStorage
+    
+      // Lưu lại vào localStorage và cập nhật state
       localStorage.setItem("user", JSON.stringify(updatedUser));
-
-      // Cập nhật state
       setUser(updatedUser);
     } catch (error) {
       console.error("Update failed:", error);
+      toast.error("Something went wrong. Please try again later.");
     }
   };
   
@@ -144,25 +149,14 @@ const Profile: React.FC = () => {
       <div className="w-full h-full p-8 bg-white shadow-lg rounded-l md:ml-16">
         <h2 className="text-[20px] font-medium text-red-500 mb-6">Edit Your Profile</h2>
         
-        <div className="md:grid md:grid-cols-[1.5fr_1fr] gap-6">
+        <div className="md:grid lg:grid-cols-[1.5fr_1fr] gap-6">
         {/* First Name */}
           <div>
-            <label className="block text-[16px] mb-1">First Name<a className="text-red-500">*</a></label>
+            <label className="block text-[16px] mb-1">Full Name<a className="text-red-500">*</a></label>
             <input
               type="text"
-              value={user?.firstname || ""}
-              onChange={(e) => setUser((prev) => prev ? { ...prev, firstname: e.target.value } : null)}
-              className="w-full p-2 border border-gray-300 rounded bg-white text-[16px] text-gray-600 mb-4 md:mb-0"
-            />
-          </div>
-
-          {/* Last Name */}
-          <div>
-            <label className="block text-[16px] mb-1">Last Name<a className="text-red-500">*</a></label>
-            <input
-              type="text"
-              value={user?.lastname || ""}
-              onChange={(e) => setUser((prev) => prev ? { ...prev, lastname: e.target.value } : null)}
+              value={user?.name || ""}
+              onChange={(e) => setUser((prev) => prev ? { ...prev, name: e.target.value } : null)}
               className="w-full p-2 border border-gray-300 rounded bg-white text-[16px] text-gray-600 mb-4 md:mb-0"
             />
           </div>

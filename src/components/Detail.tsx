@@ -34,7 +34,13 @@ const Detail = () => {
     setSelectedSize(null); // Reset size về null hoặc mặc định
   }, [id]); // Khi id thay đổi, reset lại các state
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) {
+    return (
+      <div className="min-h-[100vh] flex justify-center items-center">
+        <p className="text-gray-500 text-lg animate-pulse">Loading...</p>
+      </div>
+    );
+  }
   if (error || !product) return <p>Product not found</p>;
 
   const handleAddToCart = () => {
