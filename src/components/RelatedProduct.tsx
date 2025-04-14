@@ -84,8 +84,8 @@ const RelatedProduct = ({ currentProductId }: OurProductProps) => {
                 <img src={product.images[0]} alt={product.name} className="max-h-[180px] object-contain" />
               </div>
               <div className="absolute top-2 right-2 flex flex-col gap-2 items-center">
-                <img src="/Heart.svg" alt="Heart" className="w-[34px] h-[34px] cursor-pointer" />
-                <img src="/Eye.svg" alt="Eye" className="w-[34px] h-[34px] cursor-pointer" />
+                <img src="/R2S-Client/Heart.svg" alt="Heart" className="w-[34px] h-[34px] cursor-pointer" />
+                <img src="/R2S-Client/Eye.svg" alt="Eye" className="w-[34px] h-[34px] cursor-pointer" />
               </div>
               <button
               onClick={(e) => {
@@ -102,9 +102,9 @@ const RelatedProduct = ({ currentProductId }: OurProductProps) => {
               <div className="flex items-center gap-1">
                 {[...Array(5)].map((_, i) => (
                   i < (product.rate || 4) ? (
-                    <img src="/Star.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
+                    <img src="/R2S-Client/Star.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
                   ) : (
-                    <img src="/GrayStar.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
+                    <img src="/R2S-Client/GrayStar.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
                   )
                 ))}
                 <span className="text-gray-500 text-[14px] font-medium">

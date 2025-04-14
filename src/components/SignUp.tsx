@@ -72,7 +72,7 @@ const SignUp = () => {
     <div className="flex h-[500px] md:h-[600px] justify-center mt-10 md:mt-20 bg-white">
       <div className="flex bg-white overflow-hidden w-[1000px] h-[500px]">
         <div className="w-1/2 hidden md:block rounded">
-          <img src="/SideImage.svg" alt="Sign Up" className="w-full h-full object-cover rounded" />
+          <img src="/R2S-Client/SideImage.svg" alt="Sign Up" className="w-full h-full object-cover rounded" />
         </div>
         <div className="w-full md:w-1/2 p-2 md:p-8 lg:p-12">
           <h2 className="text-[36px] mb-1 font-[Inter]">Create an account</h2>
@@ -122,9 +122,9 @@ const SignUp = () => {
                 className="absolute right-2 top-1/4 transform -translate-y-1/2 text-gray-500"
               >
                 {showPassword ? (
-                  <img src="/ShowPass.svg" alt="Show Password" className="w-[20px] h-[20px] cursor-pointer" />
+                  <img src="/R2S-Client/ShowPass.svg" alt="Show Password" className="w-[20px] h-[20px] cursor-pointer" />
                 ) : (
-                  <img src="/hide.png" alt="Hide Password" className="w-[20px] h-[20px] cursor-pointer" />
+                  <img src="/R2S-Client/hide.png" alt="Hide Password" className="w-[20px] h-[20px] cursor-pointer" />
                 )}
               </button>
             </div>
@@ -139,7 +139,7 @@ const SignUp = () => {
           </form>
 
           <button className="flex items-center justify-center w-full h-[56px] mt-4 border border-black/40 rounded-[4px]">
-            <img src="/Google.svg" alt="Google" className="w-[24px] h-[24px]" />
+            <img src="/R2S-Client/Google.svg" alt="Google" className="w-[24px] h-[24px]" />
             <span className="ml-4 text-[16px]">Sign up with Google</span>
           </button>
 

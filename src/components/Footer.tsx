@@ -58,17 +58,17 @@ const Footer: React.FC = () => {
           <h2 className="text-[20px]">Download App</h2>
           <p className="mt-3 text-[12px] text-gray-300">Save $3 with App New User Only</p>
           <div className="mt-3 flex items-center space-x-2">
-            <img src="/QRCode.svg" alt="QR Code" className="w-[76px] h-[76px]" />
+            <img src="/R2S-Client/QRCode.svg" alt="QR Code" className="w-[76px] h-[76px]" />
             <div className="flex flex-col space-y-2">
-              <img src="/GGPlay.svg" alt="Google Play" className="w-28" />
-              <img src="/AppStore.svg" alt="App Store" className="w-28" />
+              <img src="/R2S-Client/GGPlay.svg" alt="Google Play" className="w-28" />
+              <img src="/R2S-Client/AppStore.svg" alt="App Store" className="w-28" />
             </div>
           </div>
           <div className="hidden lg:flex justify-left space-x-7 ml-2 mt-6">
-            <img src="/Facebook.svg" alt="Facebook" className="w-[10.5px] h-[18px] cursor-pointer" />
-            <img src="/Twitter.svg" alt="Twitter" className="h-[19px] cursor-pointer" />
-            <img src="/Instagram.svg" alt="Instagram" className="w-[18px] h-[18px] cursor-pointer" />
-            <img src="/Linkedin.svg" alt="Facebook" className="w-[17.5px] h-[17.5px] cursor-pointer" />
+            <img src="/R2S-Client/Facebook.svg" alt="Facebook" className="w-[10.5px] h-[18px] cursor-pointer" />
+            <img src="/R2S-Client/Twitter.svg" alt="Twitter" className="h-[19px] cursor-pointer" />
+            <img src="/R2S-Client/Instagram.svg" alt="Instagram" className="w-[18px] h-[18px] cursor-pointer" />
+            <img src="/R2S-Client/Linkedin.svg" alt="Facebook" className="w-[17.5px] h-[17.5px] cursor-pointer" />
           </div>
 
         </div>

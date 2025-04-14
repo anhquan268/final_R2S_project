@@ -62,7 +62,7 @@ const LogIn = () => {
     <div className="flex h-[400px] md:h-[600px] justify-center mt-20 bg-white">
       <div className="flex bg-white overflow-hidden w-[1000px] h-[300px] md:h-[500px]">
         <div className="w-1/2 hidden md:block rounded">
-          <img src="/SideImage.svg" alt="Sign Up" className="w-full h-full object-cover rounded" />
+          <img src="/R2S-Client/SideImage.svg" alt="Sign Up" className="w-full h-full object-cover rounded" />
         </div>
 
         <div className="w-full md:w-1/2 p-2 md:p-8 md:mt-4 lg:mt-0 lg:p-12">
@@ -94,9 +94,9 @@ const LogIn = () => {
                 className="absolute right-2 top-1/4 transform -translate-y-1/2 text-gray-500"
               >
                 {showPassword ? (
-                  <img src="/ShowPass.svg" alt="Show Password" className="w-[20px] h-[20px] cursor-pointer" />
+                  <img src="/R2S-Client/ShowPass.svg" alt="Show Password" className="w-[20px] h-[20px] cursor-pointer" />
                 ) : (
-                  <img src="/hide.png" alt="Hide Password" className="w-[20px] h-[20px] cursor-pointer" />
+                  <img src="/R2S-Client/hide.png" alt="Hide Password" className="w-[20px] h-[20px] cursor-pointer" />
                 )}
               </button>
             </div>

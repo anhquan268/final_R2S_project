@@ -105,9 +105,9 @@ const CheckOut = () => {
     <div className="container mx-auto py-12">
       <div className="flex items-center space-x-2 text-gray-500 text-[14px] mb-8">
         <a href={isAdmin ? "/productmanage" : "/"} className="hover:underline">Home</a>
-        <img src="/CrossLine.svg" alt="CrossLine" className="w-[7px]" />
+        <img src="/R2S-Client/CrossLine.svg" alt="CrossLine" className="w-[7px]" />
         <a href="/cart" className="hover:underline">Cart</a>
-        <img src="/CrossLine.svg" alt="CrossLine" className="w-[7px]" />
+        <img src="/R2S-Client/CrossLine.svg" alt="CrossLine" className="w-[7px]" />
         <span className="font-normal text-black">CheckOut</span>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">            
@@ -195,7 +195,7 @@ const CheckOut = () => {
                   />
                   Bank
                 </label>
-                <img src="/Bank.svg" alt="Bank SVG" className="sm:hidden md:flex w-full max-w-[192px] mb-4" />
+                <img src="/R2S-Client/Bank.svg" alt="Bank SVG" className="sm:hidden md:flex w-full max-w-[192px] mb-4" />
               </div>
             
               <label className="flex items-center">

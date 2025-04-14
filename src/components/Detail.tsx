@@ -130,9 +130,9 @@ const Detail = () => {
           <div className="flex items-center gap-2 my-2">
             {[...Array(5)].map((_, i) => (
               i < (product.rate || 4) ? (
-              <img src="/Star.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
+              <img src="/R2S-Client/Star.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
               ) : (
-              <img src="/GrayStar.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
+              <img src="/R2S-Client/GrayStar.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
               )
             ))}
             <span className="text-gray-500 text-[14px]">(100 Reviews)</span>
@@ -186,13 +186,13 @@ const Detail = () => {
             </div>
 
             <button onClick={handleAddToCart} className="bg-red-500 text-white w-[165px] h-[44px] flex items-center justify-center rounded">Buy Now</button>
-            <button className="border border-gray-400 rounded w-[40px] h-[40px] flex items-center justify-center"><img src="/Wishlist2.svg" alt="Wishlist2" className="w-[32px] h-[32px]" /></button>
+            <button className="border border-gray-400 rounded w-[40px] h-[40px] flex items-center justify-center"><img src="/R2S-Client/Wishlist2.svg" alt="Wishlist2" className="w-[32px] h-[32px]" /></button>
           </div>
 
           {/* Delivery Info */}
           <div className="border border-gray-400 rounded">
             <div className="p-4 flex items-start gap-3">
-              <img src="/icon-delivery2.svg" alt="icon-delivery2" className="w-[40px] h-[40px] object-contain" />
+              <img src="/R2S-Client/icon-delivery2.svg" alt="icon-delivery2" className="w-[40px] h-[40px] object-contain" />
               <div>
                 <h3 className="font-medium text-[16px]">Free Delivery</h3>
                 <button className="font-medium text-[12px] text-black hover:border-b hover:border-black">
@@ -202,7 +202,7 @@ const Detail = () => {
             </div>
 
             <div className="border-t border-t-gray-400 p-4 flex items-start gap-3">
-              <img src="/Icon-return.svg" alt="Icon-return" className="w-[40px] h-[40px] object-contain" />
+              <img src="/R2S-Client/Icon-return.svg" alt="Icon-return" className="w-[40px] h-[40px] object-contain" />
               <div>
                 <h3 className="font-medium text-[16px]">Return Delivery</h3>
                 <span className="font-medium text-[12px] text-black mr-1">Free 30 Days Delivery Returns.</span>

@@ -209,7 +209,7 @@ const ProductManage = () => {
       <div className="relative w-full max-w-md mb-6">
         <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden shadow-sm">
           <span className="px-3">
-            <img src="/SearchIcon.svg" alt="Search" className="w-4 h-4 cursor-pointer" />
+            <img src="/R2S-Client/SearchIcon.svg" alt="Search" className="w-4 h-4 cursor-pointer" />
           </span>
 
           <input 
@@ -274,9 +274,9 @@ const ProductManage = () => {
                     <div className="flex items-center gap-1">                       
                         {[...Array(5)].map((_, i) => (
                           i < (product.rate || 4) ? (
-                          <img src="/Star.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
+                          <img src="/R2S-Client/Star.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
                           ) : (
-                          <img src="/GrayStar.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
+                          <img src="/R2S-Client/GrayStar.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
                           )
                         ))}                        
                         <span className="text-gray-500 text-[14px] font-medium">

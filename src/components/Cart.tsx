@@ -58,7 +58,7 @@ const Cart = () => {
     <div className="container mx-auto py-12">
       <div className="flex items-center space-x-2 text-gray-500 text-[14px]">
         <a href={isAdmin ? "/productmanage" : "/"} className="hover:underline">Home</a>
-        <img src="/CrossLine.svg" alt="CrossLine" className="w-[7px]" />
+        <img src="/R2S-Client/CrossLine.svg" alt="CrossLine" className="w-[7px]" />
         <span className="font-normal text-black">Cart</span>
       </div>
       <div>

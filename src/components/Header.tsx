@@ -14,7 +14,7 @@ const Header: React.FC = () => {
     localStorage.removeItem("user"); // Remove user data
     localStorage.removeItem("checkoutInfo");
     
-    window.location.href = "/login"; // Chuyển hướng trang
+    window.location.href = "/R2S-Client/login"; // Chuyển hướng trang
     window.location.reload();
     window.scrollTo(0, 0);
   };
@@ -70,21 +70,21 @@ const Header: React.FC = () => {
 
         {/* Danh mục menu */}
         <div className="hidden md:flex md:space-x-4 md:text-sm lg:text-[16px] lg:space-x-12 space-x-8 text-[16px]">
-          <a href={isAdmin ? "/productmanage" : "/"} className="hover:border-b-2 hover:border-black">Home</a>
+          <a href={isAdmin ? "/R2S-Client/productmanage" : "/R2S-Client/"} className="hover:border-b-2 hover:border-black">Home</a>
           {isAdmin ? (
-            <a href="/ordermanage" className="hover:border-b-2 hover:border-black">Orders</a>
+            <a href="/R2S-Client/ordermanage" className="hover:border-b-2 hover:border-black">Orders</a>
           ) : (
             <a href="#" className="hover:border-b-2 hover:border-black">About</a>
           )}
           {isLoggedIn ? (
-            <a href="/chat" className="hover:border-b-2 hover:border-black">Contact</a>
+            <a href="/R2S-Client/chat" className="hover:border-b-2 hover:border-black">Contact</a>
           ) : (
-            <a href="/login" className="hover:border-b-2 hover:border-black">Sign In</a>
+            <a href="/R2S-Client/login" className="hover:border-b-2 hover:border-black">Sign In</a>
           )}
           {isLoggedIn ? (
-            <a href="/profile" className="hover:border-b-2 hover:border-black">Account</a>
+            <a href="/R2S-Client/profile" className="hover:border-b-2 hover:border-black">Account</a>
           ) : (
-            <a href="/signup" className="hover:border-b-2 hover:border-black">Sign Up</a>
+            <a href="/R2S-Client/signup" className="hover:border-b-2 hover:border-black">Sign Up</a>
           )}
         </div>
 

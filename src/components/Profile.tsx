@@ -109,7 +109,7 @@ const Profile: React.FC = () => {
     <div className="container mx-auto py-12">
     <div className="flex items-center space-x-2 text-gray-500 text-[14px]">
       <a href={isAdmin ? "/productmanage" : "/"} className="hover:underline">Home</a>
-      <img src="/CrossLine.svg" alt="CrossLine" className="w-[7px]" />
+      <img src="/R2S-Client/CrossLine.svg" alt="CrossLine" className="w-[7px]" />
       <span className="font-normal text-black">My Account</span>
     </div>
     <div className="flex min-h-screen mt-10">
@@ -165,7 +165,7 @@ const Profile: React.FC = () => {
           <div>
             <label className="flex items-center text-[16px] mb-1">
               Email
-              <img src="/lock.png" alt="Lock" className="w-4 h-4 ml-2 relative -translate-y-[2px]" />
+              <img src="/R2S-Client/lock.png" alt="Lock" className="w-4 h-4 ml-2 relative -translate-y-[2px]" />
             </label>
             <input
               type="email"

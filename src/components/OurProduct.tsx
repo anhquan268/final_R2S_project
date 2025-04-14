@@ -64,7 +64,7 @@ const OurProduct = () => {
       <div className="relative w-full max-w-md mb-6">
         <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden shadow-sm">
           <span className="px-3">
-            <img src="/SearchIcon.svg" alt="Search" className="w-4 h-4 cursor-pointer" />
+            <img src="/R2S-Client/SearchIcon.svg" alt="Search" className="w-4 h-4 cursor-pointer" />
           </span>
 
           <input 
@@ -115,8 +115,8 @@ const OurProduct = () => {
                 <img src={product.images[0]} alt={product.name} className="max-h-[180px] object-contain" />
               </div>
               <div className="absolute top-2 right-2 flex flex-col gap-2 items-center">
-                <img src="/Heart.svg" alt="Heart" className="w-[34px] h-[34px] cursor-pointer" />
-                <img src="/Eye.svg" alt="Eye" className="w-[34px] h-[34px] cursor-pointer" />
+                <img src="/R2S-Client/Heart.svg" alt="Heart" className="w-[34px] h-[34px] cursor-pointer" />
+                <img src="/R2S-Client/Eye.svg" alt="Eye" className="w-[34px] h-[34px] cursor-pointer" />
               </div>
               <button
               onClick={(e) => {
@@ -133,9 +133,9 @@ const OurProduct = () => {
               <div className="flex items-center gap-1">               
                 {[...Array(5)].map((_, i) => (
                   i < (product.rate || 4) ? (
-                    <img src="/Star.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
+                    <img src="/R2S-Client/Star.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
                   ) : (
-                    <img src="/GrayStar.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
+                    <img src="/R2S-Client/GrayStar.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
                   )
                 ))}
                 <span className="text-gray-500 text-[14px] font-medium">
@@ -157,7 +157,7 @@ const OurProduct = () => {
         <div className="flex flex-col items-center text-center">
           <div className="w-[80px] h-[80px] flex items-center justify-center bg-gray-300 rounded-full">
             <div className="w-[58px] h-[58px] flex items-center justify-center bg-black rounded-full">
-              <img src="/icon-delivery.svg" alt="Delivery" className="w-[40px] h-[40px]" />
+              <img src="/R2S-Client/icon-delivery.svg" alt="Delivery" className="w-[40px] h-[40px]" />
             </div>
           </div>
           <h3 className="text-[16px] sm:text-[20px] font-semibold mt-4">FREE AND FAST DELIVERY</h3>
@@ -166,7 +166,7 @@ const OurProduct = () => {
         <div className="flex flex-col items-center text-center">
           <div className="w-[80px] h-[80px] flex items-center justify-center bg-gray-300 rounded-full">
             <div className="w-[58px] h-[58px] flex items-center justify-center bg-black rounded-full">
-              <img src="/CustomerService.svg" alt="CService" className="w-[40px] h-[40px]" />
+              <img src="/R2S-Client/CustomerService.svg" alt="CService" className="w-[40px] h-[40px]" />
             </div>
           </div>
           <h3 className="text-[16px] sm:text-[20px] font-semibold mt-4">24/7 CUSTOMER SERVICE</h3>
@@ -175,7 +175,7 @@ const OurProduct = () => {
         <div className="flex flex-col items-center text-center">
           <div className="w-[80px] h-[80px] flex items-center justify-center bg-gray-300 rounded-full">
             <div className="w-[58px] h-[58px] flex items-center justify-center bg-black rounded-full">
-              <img src="/Icon-secure.svg" alt="Icon-secure" className="w-[40px] h-[40px]" />
+              <img src="/R2S-Client/Icon-secure.svg" alt="Icon-secure" className="w-[40px] h-[40px]" />
             </div>
           </div>
           <h3 className="text-[16px] sm:text-[20px] font-semibold mt-4">MONEY BACK GUARANTEE</h3>
