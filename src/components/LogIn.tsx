@@ -3,6 +3,7 @@ import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Header from "../components/Header";
 
 const LogIn = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -59,7 +60,7 @@ const LogIn = () => {
   };
 
   return (
-    <div className="flex h-[400px] md:h-[600px] justify-center mt-20 bg-white">
+    <><Header /><div className="flex h-[400px] md:h-[600px] justify-center mt-20 bg-white pl-4 pr-4">
       <div className="flex bg-white overflow-hidden w-[1000px] h-[300px] md:h-[500px]">
         <div className="w-1/2 hidden md:block rounded">
           <img src="/R2S-Client/SideImage.svg" alt="Sign Up" className="w-full h-full object-cover rounded" />
@@ -76,8 +77,7 @@ const LogIn = () => {
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full mb-4 border-b border-gray-400 text-gray-600 text-[16px] outline-none"
-            />
+              className="w-full mb-4 border-b border-gray-400 text-gray-600 text-[16px] outline-none" />
 
             <div className="relative mb-4">
               <input
@@ -86,8 +86,7 @@ const LogIn = () => {
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full mb-4 border-b border-gray-400 text-gray-600 text-[16px] outline-none"
-              />
+                className="w-full mb-4 border-b border-gray-400 text-gray-600 text-[16px] outline-none" />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
@@ -110,7 +109,7 @@ const LogIn = () => {
           </form>
         </div>
       </div>
-    </div>
+    </div></>
   );
 };
 

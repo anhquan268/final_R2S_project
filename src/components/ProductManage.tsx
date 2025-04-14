@@ -1,9 +1,10 @@
-import { useGetAllProducts, Product } from "../hooks/useGetAllProducts";
+import { Product } from "../hooks/useGetAllProducts";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import Header from "../components/Header";
 
 const fetchProducts = async (searchTerm: string) => {
   const url = searchTerm
@@ -189,7 +190,7 @@ const ProductManage = () => {
         throw new Error(`Error ${response.status}: ${errorText}`);
       }
   
-      toast.success("Product deleted successfully!");
+      toast.success("Product deleted successfully!", {autoClose: 1500});
       refetch();
     } catch (error: any) {
       toast.error("Failed to delete product!");
@@ -200,9 +201,9 @@ const ProductManage = () => {
   if (!Array.isArray(products)) return <p>No products available</p>;
 
   return (
-    <div className="mx-auto py-12 w-full px-4">
+    <><Header /><div className="mx-auto py-12 w-full px-4 pl-4 pr-4 xl:pl-40 xl:pr-40">
       <h2 className="text-[36px] font-semibold mb-8 font-[Inter]">Manage Products</h2>
-      <button className="bg-yellow-300 text-[16px] text-black px-3 py-1 rounded mb-6" onClick={() => handleCreateProduct(defaultProduct)}>          
+      <button className="bg-yellow-300 text-[16px] text-black px-3 py-1 rounded mb-6" onClick={() => handleCreateProduct(defaultProduct)}>
         + Create Product
       </button>
 
@@ -212,85 +213,84 @@ const ProductManage = () => {
             <img src="/R2S-Client/SearchIcon.svg" alt="Search" className="w-4 h-4 cursor-pointer" />
           </span>
 
-          <input 
-          type="text" 
-          placeholder="Search products..." 
-          value={searchTerm} 
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-            setShowDropdown(e.target.value.length > 0);
-          }}
-          onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
-          className="w-full p-2 outline-none"
-          />
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setShowDropdown(e.target.value.length > 0);
+            } }
+            onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
+            className="w-full p-2 outline-none" />
         </div>
 
         {showDropdown && searchTerm.length > 0 && products.length > 0 && (
-        <ul className="absolute w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+          <ul className="absolute w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
             {products.map((product: Product) => (
-              <li 
-                key={product.id} 
+              <li
+                key={product.id}
                 onClick={() => {
                   setSearchTerm(product.name);
                   setShowDropdown(false);
-                }}
+                } }
                 className="p-3 hover:bg-gray-100 cursor-pointer transition"
-                >
+              >
                 {product.name}
               </li>
             ))}
-        </ul>
+          </ul>
         )}
       </div>
-    
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 min-h-[100px]">
-      {isLoading ? (
+        {isLoading ? (
           <p className="col-span-4 text-center">Loading...</p>
         ) : error ? (
           <p className="col-span-4 text-center text-red-500">Error loading products</p>
         ) : products.length > 0 ? (
-        products.slice().sort((a, b) => a.id - b.id).map((product: Product) => (
-            <div key={product.id} 
-            className="group rounded-lg bg-white transition duration-300 sm:w-full md:max-w-[270px] lg:max-w-[270px] xl:max-w-[270px] 2xl:max-w-[270px]"
-            >      
-                <div className="w-full h-[250px] bg-[#F5F5F5] flex flex-col items-center overflow-hidden rounded-md relative">
-                    <div className="w-full h-full flex items-center justify-center relative"
-                    onMouseEnter={(e) => e.currentTarget.querySelector("button")?.classList.add("opacity-100", "translate-y-0")}
-                    onMouseLeave={(e) => e.currentTarget.querySelector("button")?.classList.remove("opacity-100", "translate-y-0")}
-                    >
-                        <img src={product.images[0]} alt={product.name} className="max-h-[180px] object-contain" />
-                        <button onClick={(e) => {
-                            e.stopPropagation();
-                            handleAddToCart(product);
-                        }}
-                            className="absolute bottom-0 left-0 w-full bg-black text-white py-3 text-center opacity-0 translate-y-2 transition-all duration-300">
-                            Add To Cart
-                        </button>
-                    </div>
+          products.slice().sort((a, b) => a.id - b.id).map((product: Product) => (
+            <div key={product.id}
+              className="group rounded-lg bg-white transition duration-300 sm:w-full md:max-w-[270px] lg:max-w-[270px] xl:max-w-[270px] 2xl:max-w-[270px]"
+            >
+              <div className="w-full h-[250px] bg-[#F5F5F5] flex flex-col items-center overflow-hidden rounded-md relative">
+                <div className="w-full h-full flex items-center justify-center relative"
+                  onMouseEnter={(e) => e.currentTarget.querySelector("button")?.classList.add("opacity-100", "translate-y-0")}
+                  onMouseLeave={(e) => e.currentTarget.querySelector("button")?.classList.remove("opacity-100", "translate-y-0")}
+                >
+                  <img src={product.images[0]} alt={product.name} className="max-h-[180px] object-contain" />
+                  <button onClick={(e) => {
+                    e.stopPropagation();
+                    handleAddToCart(product);
+                  } }
+                    className="absolute bottom-0 left-0 w-full bg-black text-white py-3 text-center opacity-0 translate-y-2 transition-all duration-300">
+                    Add To Cart
+                  </button>
                 </div>
-                <h3 className="text-[16px] font-medium mt-3">{product.name}</h3>
-                <div className="flex items-center gap-3">
-                    <a className="text-red-500 text-[16px] font-medium">${product.price}</a>
-                    <div className="flex items-center gap-1">                       
-                        {[...Array(5)].map((_, i) => (
-                          i < (product.rate || 4) ? (
-                          <img src="/R2S-Client/Star.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
-                          ) : (
-                          <img src="/R2S-Client/GrayStar.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
-                          )
-                        ))}                        
-                        <span className="text-gray-500 text-[14px] font-medium">
-                          ({product.stock || 50})
-                        </span>
-                    </div>
+              </div>
+              <h3 className="text-[16px] font-medium mt-3">{product.name}</h3>
+              <div className="flex items-center gap-3">
+                <a className="text-red-500 text-[16px] font-medium">${product.price}</a>
+                <div className="flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    i < (product.rate || 4) ? (
+                      <img src="/R2S-Client/Star.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
+                    ) : (
+                      <img src="/R2S-Client/GrayStar.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
+                    )
+                  ))}
+                  <span className="text-gray-500 text-[14px] font-medium">
+                    ({product.stock || 50})
+                  </span>
                 </div>
-                <div className="flex gap-2 mt-2">
-                    <button className="bg-green-500 text-white px-3 py-1 rounded" onClick={() => navigate(`/detail/${product.id}`)}>View</button>
-                    <button className="bg-blue-500 text-white px-3 py-1 rounded" onClick={() => handleEditProduct(product)}>Edit</button>    
-                    <button className="bg-red-500 text-white px-3 py-1 rounded" onClick={() => handleDeleteProduct(product.id)}>Delete</button>                                  
-                </div>
+              </div>
+              <div className="flex gap-2 mt-2">
+                <button className="bg-green-500 text-white px-3 py-1 rounded" onClick={() => navigate(`/detail/${product.id}`)}>View</button>
+                <button className="bg-blue-500 text-white px-3 py-1 rounded" onClick={() => handleEditProduct(product)}>Edit</button>
+                <button className="bg-red-500 text-white px-3 py-1 rounded" onClick={() => handleDeleteProduct(product.id)}>Delete</button>
+              </div>
             </div>
-        ))) : (
+          ))) : (
           <div className="col-span-4 flex items-center justify-center">
             No products found
           </div>
@@ -311,8 +311,7 @@ const ProductManage = () => {
                     key={index}
                     src={image}
                     alt={`Product ${index + 1}`}
-                    className="w-[200px] h-[150px] object-contain border rounded-md"
-                  />
+                    className="w-[200px] h-[150px] object-contain border rounded-md" />
                 ))}
             </div>
 
@@ -322,41 +321,34 @@ const ProductManage = () => {
               type="file"
               multiple
               className="border p-2 w-full mb-4"
-              onChange={handleImageChange}
-            />
+              onChange={handleImageChange} />
             <a>Name:</a>
             <input className="border p-2 w-full mb-4 mt-2" type="text" value={editingProduct?.name || ""}
-            onChange={(e) =>
-                setEditingProduct((prev) =>
-                  prev ? { ...prev, name: e.target.value } : null
-                )
-              } />
-            
-            <a>Price:</a>            
+              onChange={(e) => setEditingProduct((prev) => prev ? { ...prev, name: e.target.value } : null
+              )} />
+
+            <a>Price:</a>
             <input
-            className="border p-2 w-full mb-4 mt-2"
-            type="number"
-            value={editingProduct?.price || ""}
-            min={1} // Giới hạn nhỏ nhất là 1
-            onChange={(e) => {
+              className="border p-2 w-full mb-4 mt-2"
+              type="number"
+              value={editingProduct?.price || ""}
+              min={1} // Giới hạn nhỏ nhất là 1
+              onChange={(e) => {
                 const value = Math.max(1, Number(e.target.value)); // Đảm bảo giá trị tối thiểu là 1
-                setEditingProduct((prev) =>
-                    prev ? { ...prev, price: value } : null
+                setEditingProduct((prev) => prev ? { ...prev, price: value } : null
                 );
-            }}
-            />
-           
+              } } />
+
             <a>Description:</a>
             <input
-            className="border p-2 w-full mb-4 mt-2"
-            type="text" // Đổi từ number -> text
-            value={editingProduct?.description || ""}
-            onChange={(e) => {
-                setEditingProduct((prev) =>
-                    prev ? { ...prev, description: e.target.value } : null
+              className="border p-2 w-full mb-4 mt-2"
+              type="text" // Đổi từ number -> text
+              value={editingProduct?.description || ""}
+              onChange={(e) => {
+                setEditingProduct((prev) => prev ? { ...prev, description: e.target.value } : null
                 );
-            }}
-            required // Đảm bảo không để trống
+              } }
+              required // Đảm bảo không để trống
             />
 
             <div className="flex justify-end gap-2">
@@ -369,7 +361,7 @@ const ProductManage = () => {
       {creatingProduct && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg">
-            <h3 className="text-xl font-bold mb-4">Create Product</h3>          
+            <h3 className="text-xl font-bold mb-4">Create Product</h3>
 
             {/* Upload ảnh mới */}
             <label className="block mb-2">Image:</label>
@@ -377,67 +369,58 @@ const ProductManage = () => {
               type="file"
               multiple
               className="border p-2 w-full mb-4"
-              onChange={handleImageUpload}
-            />
+              onChange={handleImageUpload} />
             <a>Name:</a>
             <input className="border p-2 w-full mb-4 mt-2" type="text" value={creatingProduct?.name || ""}
-            onChange={(e) =>
-                setCreatingProduct((prev) =>
-                  prev ? { ...prev, name: e.target.value } : null
-                )
-              } />
-            
-            <a>Price:</a>            
+              onChange={(e) => setCreatingProduct((prev) => prev ? { ...prev, name: e.target.value } : null
+              )} />
+
+            <a>Price:</a>
             <input
-            className="border p-2 w-full mb-4 mt-2"
-            type="number"
-            value={creatingProduct?.price || ""}
-            min={1} // Giới hạn nhỏ nhất là 1
-            onChange={(e) => {
+              className="border p-2 w-full mb-4 mt-2"
+              type="number"
+              value={creatingProduct?.price || ""}
+              min={1} // Giới hạn nhỏ nhất là 1
+              onChange={(e) => {
                 const value = Math.max(1, Number(e.target.value)); // Đảm bảo giá trị tối thiểu là 1
-                setCreatingProduct((prev) =>
-                  prev ? { ...prev, price: value } : null
+                setCreatingProduct((prev) => prev ? { ...prev, price: value } : null
                 );
-            }}
-            />
-           
+              } } />
+
             <a>Description:</a>
             <input
-            className="border p-2 w-full mb-4 mt-2"
-            type="text" // Đổi từ number -> text
-            value={creatingProduct?.description || ""}
-            onChange={(e) => {
-                setCreatingProduct((prev) =>
-                    prev ? { ...prev, description: e.target.value } : null
+              className="border p-2 w-full mb-4 mt-2"
+              type="text" // Đổi từ number -> text
+              value={creatingProduct?.description || ""}
+              onChange={(e) => {
+                setCreatingProduct((prev) => prev ? { ...prev, description: e.target.value } : null
                 );
-            }}
-            required // Đảm bảo không để trống
+              } }
+              required // Đảm bảo không để trống
             />
 
             <a>Category:</a>
             <input
-            className="border p-2 w-full mb-4 mt-2"
-            type="text" // Đổi từ number -> text
-            value={creatingProduct?.category || ""}
-            onChange={(e) => {
-                setCreatingProduct((prev) =>
-                    prev ? { ...prev, category: e.target.value } : null
+              className="border p-2 w-full mb-4 mt-2"
+              type="text" // Đổi từ number -> text
+              value={creatingProduct?.category || ""}
+              onChange={(e) => {
+                setCreatingProduct((prev) => prev ? { ...prev, category: e.target.value } : null
                 );
-            }}
-            required // Đảm bảo không để trống
+              } }
+              required // Đảm bảo không để trống
             />
 
             <a>Brand:</a>
             <input
-            className="border p-2 w-full mb-4 mt-2"
-            type="text" // Đổi từ number -> text
-            value={creatingProduct?.brand || ""}
-            onChange={(e) => {
-                setCreatingProduct((prev) =>
-                    prev ? { ...prev, brand: e.target.value } : null
+              className="border p-2 w-full mb-4 mt-2"
+              type="text" // Đổi từ number -> text
+              value={creatingProduct?.brand || ""}
+              onChange={(e) => {
+                setCreatingProduct((prev) => prev ? { ...prev, brand: e.target.value } : null
                 );
-            }}
-            required // Đảm bảo không để trống
+              } }
+              required // Đảm bảo không để trống
             />
 
             <div className="flex justify-end gap-2">
@@ -447,7 +430,7 @@ const ProductManage = () => {
           </div>
         </div>
       )}
-    </div>
+    </div></>
   );
 };
 

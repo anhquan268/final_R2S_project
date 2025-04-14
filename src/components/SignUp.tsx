@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -69,7 +70,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex h-[500px] md:h-[600px] justify-center mt-10 md:mt-20 bg-white">
+    <><Header /><div className="flex h-[500px] md:h-[600px] justify-center mt-10 md:mt-20 bg-white pl-4 pr-4">
       <div className="flex bg-white overflow-hidden w-[1000px] h-[500px]">
         <div className="w-1/2 hidden md:block rounded">
           <img src="/R2S-Client/SideImage.svg" alt="Sign Up" className="w-full h-full object-cover rounded" />
@@ -81,14 +82,13 @@ const SignUp = () => {
           <form onSubmit={handleSignUp}>
             <div className="flex gap-4 mb-4">
               <input
-              type="text"
-              name="name"
-              placeholder="Full Name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full border-b border-gray-400 text-gray-600 text-[16px] outline-none"
-              />
-             
+                type="text"
+                name="name"
+                placeholder="Full Name"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full border-b border-gray-400 text-gray-600 text-[16px] outline-none" />
+
             </div>
             <input
               type="text"
@@ -96,16 +96,14 @@ const SignUp = () => {
               placeholder="Address"
               value={formData.address}
               onChange={handleChange}
-              className="w-full mb-4 border-b border-gray-400 text-gray-600 text-[16px] outline-none"
-            />
+              className="w-full mb-4 border-b border-gray-400 text-gray-600 text-[16px] outline-none" />
             <input
               type="email"
               name="email"
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full mb-4 border-b border-gray-400 text-gray-600 text-[16px] outline-none"
-            />
+              className="w-full mb-4 border-b border-gray-400 text-gray-600 text-[16px] outline-none" />
 
             <div className="relative mb-4">
               <input
@@ -114,8 +112,7 @@ const SignUp = () => {
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full mb-4 border-b border-gray-400 text-gray-600 text-[16px] outline-none"
-              />
+                className="w-full mb-4 border-b border-gray-400 text-gray-600 text-[16px] outline-none" />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
@@ -151,7 +148,7 @@ const SignUp = () => {
           </p>
         </div>
       </div>
-    </div>
+    </div></>
   );
 };
 

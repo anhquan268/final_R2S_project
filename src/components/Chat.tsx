@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { db } from "../firebase"; // Import Firestore DB
 import { collection, addDoc, onSnapshot, DocumentData } from "firebase/firestore";
 import mqtt, { MqttClient } from "mqtt";
-import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 interface Message {
   text: string;
@@ -147,14 +147,15 @@ function Chat() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '16px', minHeight: '90vh' }}>
+    <><Header /><div className="flex flex-col items-center min-h-[90vh] pl-4 pr-4 md:pl-20 md:pr-20 lg:pl-40 lg:pr-40 xl:pl-60 xl:pr-60 py-4">
       <h1 className="text-[36px] font-semibold mb-4 mt-4">Community Chat</h1>
       <div style={{ width: '100%', backgroundColor: 'white', boxShadow: '0px 2px 10px rgba(0, 0, 0, 0.1)', borderRadius: '8px', padding: '16px', display: 'flex', flexDirection: 'column', gap: '8px', overflowY: 'auto', height: '350px' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
           {messages.map((msg, index) => (
-            <div key={index} style={{ 
-              display: 'flex', flexDirection: 'column', alignItems: msg.isMine ? 'flex-end' : 'flex-start', maxWidth: '100%' }}
-              className={`px-4 ${msg.isMine ? 'pl-28 sm:pl-60 md:pl-80 lg:pl-[30rem] xl:pl-[40rem] pr-0' : 'pl-0 pr-28 sm:pr-60 md:pr-80 lg:pr-[30rem] xl:pr-[40rem]'}`}>
+            <div key={index} style={{
+              display: 'flex', flexDirection: 'column', alignItems: msg.isMine ? 'flex-end' : 'flex-start', maxWidth: '100%'
+            }}
+              className={`px-4 ${msg.isMine ? 'pl-28 sm:pl-60 md:pl-80 lg:pl-[20rem] pr-0' : 'pl-0 pr-28 sm:pr-60 md:pr-80 lg:pr-[20rem]'}`}>
               {!msg.isMine && msg.beAdmin && (
                 <div style={{ fontSize: '12px', fontWeight: 'bold', marginBottom: '4px', marginTop: '4px', color: 'black' }}>
                   ADMIN
@@ -164,7 +165,7 @@ function Chat() {
                 <div style={{ fontSize: '12px', fontWeight: 'bold', marginBottom: '4px', marginTop: '4px', color: 'black' }}>
                   {msg.sender}
                 </div>
-              )}              
+              )}
               <div style={{
                 backgroundColor: msg.isMine ? '#3b82f6' : '#f472b6',
                 color: 'white',
@@ -185,10 +186,10 @@ function Chat() {
           onChange={(e) => setInputMessage(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
-              e.preventDefault();   // Ngăn xuống dòng
-              sendMessage();        // Gửi tin nhắn
+              e.preventDefault(); // Ngăn xuống dòng
+              sendMessage(); // Gửi tin nhắn
             }
-          }}
+          } }
           placeholder="Enter message..."
           rows={1}
           className="w-full resize-none border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -198,15 +199,14 @@ function Chat() {
               el.style.height = 'auto'; // reset
               el.style.height = el.scrollHeight + 'px'; // grow
             }
-          }}
-        />
+          } } />
         <div style={{ textAlign: 'center', marginTop: '0px' }}>
           <button onClick={sendMessage} style={{ backgroundColor: '#3b82f6', color: 'white', padding: '8px 16px', borderRadius: '4px', marginTop: '12px', cursor: 'pointer', border: 'none' }}>
             Send
           </button>
         </div>
       </div>
-    </div>
+    </div></>
   );
 }
 

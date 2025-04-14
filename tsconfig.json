@@ -8,8 +8,8 @@
     "esModuleInterop": true,                // Enables ES module interoperability
     "strict": true,                         // Enables all strict type-checking options
     "forceConsistentCasingInFileNames": true, // Ensures consistent casing in file names
-    "module": "ESNext",                     // Ensures you're using the latest module system
-    "moduleResolution": "Node",             // Resolves modules using Node.js conventions
+    "module": "NodeNext",                     // Ensures you're using the latest module system
+    "moduleResolution": "NodeNext",             // Resolves modules using Node.js conventions
     "resolveJsonModule": true,              // Allows importing JSON files as modules
     "isolatedModules": true,                // Ensures each file can be transpiled independently
     "noEmit": true,                         // Do not output any compiled files
@@ -17,5 +17,4 @@
     "allowSyntheticDefaultImports": true    // Allows default imports for modules without a default export
   },
   "include": ["./src"],                      // Specifies the files or folders to include
-  "exclude": ["node_modules", "build"]       // Optionally exclude unwanted files or folders
 }

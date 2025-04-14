@@ -59,8 +59,9 @@ const OurProduct = () => {
   if (!Array.isArray(products)) return <p>No products available</p>;
 
   return (
-    <div className="mx-auto py-12 w-full px-4">
+    <div className="mx-auto py-12 w-full px-4 pl-4 pr-4 xl:pl-40 xl:pr-40">
       <h2 className="text-[36px] font-semibold mb-6 font-[Inter]">Explore Our Products</h2>
+      
       <div className="relative w-full max-w-md mb-6">
         <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden shadow-sm">
           <span className="px-3">

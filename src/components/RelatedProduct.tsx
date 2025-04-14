@@ -72,14 +72,14 @@ const RelatedProduct = ({ currentProductId }: OurProductProps) => {
         <span className="text-[16px] text-red-500 font-semibold font-[Inter]">Related Item</span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 min-h-[100px]">
         {relatedProducts.map((product: Product) => (
           <div key={product.id}
-          className="group rounded-lg bg-white transition duration-300 w-[270px]"
+          className="group rounded-lg bg-white transition duration-300 sm:w-full md:max-w-[270px] lg:max-w-[270px] xl:max-w-[270px] 2xl:max-w-[270px]"
           onClick={() => navigate(`/detail/${product.id}`)} // 👈 Navigate to detail page
           >
             {/* Image Container */}
-            <div className="w-[270px] h-[250px] bg-[#F5F5F5] flex flex-col items-center overflow-hidden rounded-md relative">
+            <div className="w-full h-[250px] bg-[#F5F5F5] flex flex-col items-center overflow-hidden rounded-md relative">
               <div className="flex-grow flex items-center justify-center">
                 <img src={product.images[0]} alt={product.name} className="max-h-[180px] object-contain" />
               </div>

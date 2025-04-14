@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { useState } from "react";
 import { toast } from "react-toastify";
+import Header from "../components/Header";
 
 const API_URL = "https://devapi.uniscore.vn/uri/api/orders";
 
@@ -87,26 +88,52 @@ const OrderManage = () => {
 
   const mutationDelete = useMutation({
     mutationFn: deleteOrder,
-    onMutate: (orderId) => setLoadingOrderId(orderId),
-    onSuccess: () => {
-        window.location.reload();
+  
+    onMutate: async (orderId) => {
+      setLoadingOrderId(orderId);
+  
+      await queryClient.cancelQueries({ queryKey: ["orders"] });
+  
+      const previousOrders = queryClient.getQueryData<Order[]>(["orders"]);
+  
+      if (previousOrders) {
+        queryClient.setQueryData<Order[]>(
+          ["orders"],
+          previousOrders.filter((order) => order.id !== orderId)
+        );
+      }
+  
+      return { previousOrders };
     },
-    onError: () => {
-        toast.error("Failed to delete order");
-        setLoadingOrderId(null);
+  
+    onSuccess: () => {
+      toast.success("Order deleted successfully", { autoClose: 1500 });
+    },
+  
+    onError: (_error, orderId, context) => {
+      toast.error("Failed to delete order");
+      if (context?.previousOrders) {
+        queryClient.setQueryData(["orders"], context.previousOrders);
+      }
+      setLoadingOrderId(null);
+    },
+  
+    onSettled: () => {
+      setLoadingOrderId(null);
+      queryClient.invalidateQueries({ queryKey: ["orders"] });
     },
   });
 
   return (
-    <div className="container mx-auto py-12">
+    <><Header /><div className="container mx-auto py-12 pl-4 pr-4 xl:pl-40 xl:pr-40">
       <h2 className="text-[36px] font-semibold mb-8 font-[Inter]">Order Management</h2>
-     
-        {isLoading ? (
-          <p className="col-span-4 text-center text-[12px] md:text-[16px]">Loading...</p>
-        ) : error ? (
-          <p className="col-span-4 text-center text-red-500">Error loading orders</p>
-        ) : (
-          <table className="min-w-full border-separate border-spacing-y-4">
+
+      {isLoading ? (
+        <p className="col-span-4 text-center text-[12px] md:text-[16px]">Loading...</p>
+      ) : error ? (
+        <p className="col-span-4 text-center text-red-500">Error loading orders</p>
+      ) : (
+        <table className="min-w-full border-separate border-spacing-y-4">
           <thead className="shadow-md rounded">
             <tr>
               <th className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">ID</th>
@@ -118,60 +145,60 @@ const OrderManage = () => {
               <th className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">Actions</th>
             </tr>
           </thead>
-        <tbody>
+          <tbody>
             {orders.length === 0 ? (
-                <tr>
-                    <td colSpan={5} className="border p-2 text-center">
-                    No orders available
-                    </td>
-                </tr>
+              <tr>
+                <td colSpan={5} className="border p-2 text-center">
+                  No orders available
+                </td>
+              </tr>
             ) : (
-            orders
-            .sort((a, b) => {
-              // Ưu tiên 'pending' trước 'done'
-              if (a.status === "pending" && b.status !== "pending") return -1;
-              if (a.status !== "pending" && b.status === "pending") return 1;
-              // Nếu cùng trạng thái, sắp xếp theo id tăng dần
-              return b.id - a.id;
-            })
-            .map((order: Order) => (
-            <tr key={order.id} className="shadow-md rounded">
-              <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px] text-center">{order.id}</td>
-              <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px] text-center">{order.user_id}</td>
-              <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">{order.name}</td>
-              <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">{order.address}</td>
-              <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">${order.total_amount}</td>
-              <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px] text-center">{order.status}</td>
-              <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px] space-x-2">
-                {order.status === "pending" && (
-                    <button
-                    className="bg-green-500 text-white px-3 py-1 rounded"
-                    onClick={() => mutationUpdate.mutate({ orderId: order.id, status: 'done' })}
-                    >
-                    Approve
-                    </button>
-                )}
-             
-                {/* <button
-                  className="bg-yellow-500 text-white px-3 py-1 rounded"
-                  onClick={() => mutationUpdate.mutate({ orderId: order.id, status: 'refused' })}
-                >
-                  Refuse
-                </button>*/}
-                <button
-                  className="bg-red-500 text-white px-3 py-1 rounded"
-                  onClick={() => mutationDelete.mutate(order.id)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          )))}
-        </tbody>
+              orders
+                .sort((a, b) => {
+                  // Ưu tiên 'pending' trước 'done'
+                  if (a.status === "pending" && b.status !== "pending") return -1;
+                  if (a.status !== "pending" && b.status === "pending") return 1;
+                  // Nếu cùng trạng thái, sắp xếp theo id tăng dần
+                  return b.id - a.id;
+                })
+                .map((order: Order) => (
+                  <tr key={order.id} className="shadow-md rounded">
+                    <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px] text-center">{order.id}</td>
+                    <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px] text-center">{order.user_id}</td>
+                    <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">{order.name}</td>
+                    <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">{order.address}</td>
+                    <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">${order.total_amount}</td>
+                    <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px] text-center">{order.status}</td>
+                    <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px] space-x-2">
+                      {order.status === "pending" && (
+                        <button
+                          className="bg-green-500 text-white px-3 py-1 rounded"
+                          onClick={() => mutationUpdate.mutate({ orderId: order.id, status: 'done' })}
+                        >
+                          Approve
+                        </button>
+                      )}
+
+                      {/* <button
+                          className="bg-yellow-500 text-white px-3 py-1 rounded"
+                          onClick={() => mutationUpdate.mutate({ orderId: order.id, status: 'refused' })}
+                        >
+                          Refuse
+                        </button>*/}
+                      <button
+                        className="bg-red-500 text-white px-3 py-1 rounded"
+                        onClick={() => mutationDelete.mutate(order.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                )))}
+          </tbody>
         </table>
-        )}
-      
-    </div>
+      )}
+
+    </div></>
   );
 };
 

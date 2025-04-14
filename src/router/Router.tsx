@@ -1,4 +1,4 @@
-import { BrowserRouter, useRoutes } from 'react-router-dom'
+import { HashRouter, useRoutes } from 'react-router-dom'
 import { routes } from './routes'
 
 const RouterContent = () => {
@@ -8,8 +8,8 @@ const RouterContent = () => {
 
 export const Router = () => {
   return (
-    <BrowserRouter basename="/R2S-Client">
+    <HashRouter>
       <RouterContent />
-    </BrowserRouter>
+    </HashRouter>
   )
 }

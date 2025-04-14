@@ -3,6 +3,7 @@ import { useGetProductById } from "../hooks/useGetProductById";
 import { useEffect, useState, useMemo } from "react";
 import RelatedProduct from "./RelatedProduct";
 import { toast } from 'react-toastify';
+import Header from "../components/Header";
 
 const Detail = () => {
   const { id } = useParams<{ id: string }>();
@@ -83,38 +84,35 @@ const Detail = () => {
   
 
   return (
-    <div>    
+    <><Header /><div className="pl-4 pr-4 lg:pl-16 lg:pr-16 xl:pl-40 xl:pr-40">
       <div className="container mx-auto py-12 grid grid-cols-1 md:grid-cols-[60%_40%] gap-10">
         {/* Left: Image Gallery */}
         <div className="flex gap-4 items-start w-full">
           {/* Ảnh nhỏ (bên trái) */}
-         
+
           <div className="flex flex-col gap-2">
-          {Array(4)
-            .fill(null)
-            .map((_, index) => {
-              const img = product.images?.[index]; // Lấy ảnh nếu có
-              return (
-                <div
-                  key={index}
-                  className="bg-[#F5F5F5] rounded w-[170px] h-[138px] flex items-center justify-center"
-                >
-                  {img ? (
-                    <img
-                      src={img}
-                      alt={`Thumbnail ${index}`}
-                      className={`h-[120px] p-1 cursor-pointer ${
-                        selectedImage === img ? "border-blue-500" : "border-gray-300"
-                      }`}
-                      onClick={() => setSelectedImage(img)}
-                    />
-                  ) : (
-                    <span className="text-gray-400">No Image</span>
-                  )}
-                </div>
-              );
-            })}
-        </div>
+            {Array(4)
+              .fill(null)
+              .map((_, index) => {
+                const img = product.images?.[index]; // Lấy ảnh nếu có
+                return (
+                  <div
+                    key={index}
+                    className="bg-[#F5F5F5] rounded w-[170px] h-[138px] flex items-center justify-center"
+                  >
+                    {img ? (
+                      <img
+                        src={img}
+                        alt={`Thumbnail ${index}`}
+                        className={`h-[120px] p-1 cursor-pointer ${selectedImage === img ? "border-blue-500" : "border-gray-300"}`}
+                        onClick={() => setSelectedImage(img)} />
+                    ) : (
+                      <span className="text-gray-400">No Image</span>
+                    )}
+                  </div>
+                );
+              })}
+          </div>
 
           {/* Ảnh lớn */}
           <div className="bg-[#F5F5F5] rounded w-[450px] h-[576px] w-full p-4 flex items-center justify-center">
@@ -130,9 +128,9 @@ const Detail = () => {
           <div className="flex items-center gap-2 my-2">
             {[...Array(5)].map((_, i) => (
               i < (product.rate || 4) ? (
-              <img src="/R2S-Client/Star.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
+                <img src="/R2S-Client/Star.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
               ) : (
-              <img src="/R2S-Client/GrayStar.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
+                <img src="/R2S-Client/GrayStar.svg" key={i} alt="Star" className="w-[20px] h-[20px]" />
               )
             ))}
             <span className="text-gray-500 text-[14px]">(100 Reviews)</span>
@@ -142,17 +140,17 @@ const Detail = () => {
           </div>
           <p className="text-[24px] text-black font-[Inter]">${product.price}</p>
           <p className="text-[14px] text-black my-4">{product.description}</p>
-        
+
           {/* Colors */}
           <div className="my-4 flex items-center gap-4">
             <h3 className="text-[20px] font-[Inter]">Colours:</h3>
             <div className="flex gap-4">
               {colors.map(({ name, color }) => (
                 <div
-                    key={name}
-                    className={`w-4 h-4 rounded-full cursor-pointer ${color}
+                  key={name}
+                  className={`w-4 h-4 rounded-full cursor-pointer ${color}
                         ${selectedColor === name ? "border-2 border-white outline outline-2 outline-black" : "border-2 border-white"}`}
-                    onClick={() => setSelectedColor(name)}
+                  onClick={() => setSelectedColor(name)}
                 >
                 </div>
               ))}
@@ -165,13 +163,11 @@ const Detail = () => {
             <div className="flex gap-2">
               {["XS", "S", "M", "L", "XL"].map((size) => (
                 <button
-                key={size}
-                className={`w-[32px] h-[32px] items-center justify-center text-[14px] border border-gray-400 rounded ${
-                    selectedSize === size ? "bg-red-500 text-white border border-red-500" : ""
-                }`} onClick={() => setSelectedSize(size)}>
-                    {size}
-                    </button>
-                ))}
+                  key={size}
+                  className={`w-[32px] h-[32px] items-center justify-center text-[14px] border border-gray-400 rounded ${selectedSize === size ? "bg-red-500 text-white border border-red-500" : ""}`} onClick={() => setSelectedSize(size)}>
+                  {size}
+                </button>
+              ))}
             </div>
           </div>
 
@@ -190,7 +186,7 @@ const Detail = () => {
           </div>
 
           {/* Delivery Info */}
-          <div className="border border-gray-400 rounded">
+          <div className="border border-gray-400 rounded max-w-[396px]">
             <div className="p-4 flex items-start gap-3">
               <img src="/R2S-Client/icon-delivery2.svg" alt="icon-delivery2" className="w-[40px] h-[40px] object-contain" />
               <div>
@@ -213,13 +209,13 @@ const Detail = () => {
             </div>
 
           </div>
-        
+
         </div>
       </div>
       {/* OurProduct Component */}
       <div className="mt-5 mb-10">{relatedProductComponent}</div>
 
-    </div>
+    </div></>
 
   );
 };
