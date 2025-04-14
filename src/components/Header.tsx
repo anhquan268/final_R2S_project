@@ -60,7 +60,7 @@ const Header: React.FC = () => {
         {/* Chọn ngôn ngữ */}
         <div className="flex sm:flex items-center gap-2 cursor-pointer text-gray-300">
           <span>English</span>
-          <img src="/DropDown.svg" alt="Search" className="w-3.5 h-3.5 cursor-pointer" />
+          <img src="/R2S-Client/DropDown.svg" alt="Search" className="w-3.5 h-3.5 cursor-pointer" />
         </div>
       </div>
 
@@ -99,14 +99,14 @@ const Header: React.FC = () => {
             className="bg-transparent outline-none cursor-pointer text-[10px] sm:text-[12px] md:text-[11px] lg:text-[12px] xl:text-[12px] 2xl:text-[12px] flex-1"
             aria-label="Search"
             />
-            <img src="/SearchIcon.svg" alt="Search" className="w-3 h-3 sm:w-4 sm:h-4 cursor-pointer" />
+            <img src="/R2S-Client/SearchIcon.svg" alt="Search" className="w-3 h-3 sm:w-4 sm:h-4 cursor-pointer" />
         </div>
 
         {/* Biểu tượng giỏ hàng và yêu thích */}
         <div className="flex items-center space-x-4 relative">
-            <img src="/Wishlist.svg" alt="Favorite" className="w-[32px] h-[32px] cursor-pointer" tabIndex={0}/>
+            <img src="/R2S-Client/Wishlist.svg" alt="Favorite" className="w-[32px] h-[32px] cursor-pointer" tabIndex={0}/>
             <a href="/cart" className="relative">
-              <img src="/Cart1.svg" alt="Cart" className="w-[32px] h-[32px] cursor-pointer" tabIndex={0} />
+              <img src="/R2S-Client/Cart1.svg" alt="Cart" className="w-[32px] h-[32px] cursor-pointer" tabIndex={0} />
               {cartCount > 0 && (
               <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
                 {cartCount}
@@ -124,7 +124,7 @@ const Header: React.FC = () => {
             >              
               <a href={isLoggedIn ? "/profile" : "/login"} className="flex items-center">
               <img
-                src={isLoggedIn ? "/userlogged.svg" : "/user.svg"}
+                src={isLoggedIn ? "/R2S-Client/userlogged.svg" : "/R2S-Client/user.svg"}
                 alt="User"
                 className="w-[32px] h-[32px] cursor-pointer"
               />               

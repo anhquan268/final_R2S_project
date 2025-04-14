@@ -1,3 +1,4 @@
+// main.tsx hoặc index.tsx
 import React from "react"
 import { createRoot } from "react-dom/client"
 import { Router } from "./router/Router"
@@ -9,7 +10,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { ToastContainer } from "react-toastify";
 
 const queryClient = new QueryClient()
-createRoot(document.getElementById("root") as HTMLElement).render(
+createRoot(document.getElementById("root") as HTMLElement).render(     
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
@@ -19,4 +20,4 @@ createRoot(document.getElementById("root") as HTMLElement).render(
       <ToastContainer />
     </QueryClientProvider>
   </React.StrictMode>
-)
+) 

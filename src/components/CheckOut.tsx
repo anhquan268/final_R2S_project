@@ -118,7 +118,7 @@ const CheckOut = () => {
           <div className="flex flex-col text-[15px] sm:text-[16px] font-[Poppins]">
             <label>Full Name<a className="text-red-500">*</a></label>
             <input {...register("fullName", { required: "Full Name is required" })} className="rounded bg-[#F5F5F5] p-2 w-full sm:max-w-[470px] mt-2" />
-            {errors.fullName && <p className="text-red-500 text-sm">{errors.fullName.message}</p>}
+            {errors.fullName && <p className="text-red-500 text-sm">{typeof errors.fullName?.message === 'string' ? errors.fullName.message : ""}</p>}
           </div>
           <div className="flex flex-col text-[15px] sm:text-[16px] font-[Poppins] mt-4">
               <label>Company Name</label>
@@ -127,7 +127,7 @@ const CheckOut = () => {
           <div className="flex flex-col text-[15px] sm:text-[16px] font-[Poppins] mt-4">
               <label>Street Address<a className="text-red-500">*</a></label>
               <input {...register("stAddress", { required: "Street Address is required" })} className="rounded bg-[#F5F5F5] p-2 w-full sm:max-w-[470px] mt-2" />
-              {errors.stAddress && <p className="text-red-500 text-sm">{errors.stAddress.message}</p>}
+              {errors.stAddress && <p className="text-red-500 text-sm">{typeof errors.stAddress?.message === 'string' ? errors.stAddress.message : ""}</p>}
           </div>
           <div className="flex flex-col text-[15px] sm:text-[16px] font-[Poppins] mt-4">
               <label>Apartment, floor, etc. (optional)</label>
@@ -136,17 +136,17 @@ const CheckOut = () => {
           <div className="flex flex-col text-[15px] sm:text-[16px] font-[Poppins] mt-4">
               <label>Town/City<a className="text-red-500">*</a></label>
               <input {...register("townCity", { required: "Town or City is required" })} className="rounded bg-[#F5F5F5] p-2 w-full sm:max-w-[470px] mt-2" />
-              {errors.townCity && <p className="text-red-500 text-sm">{errors.townCity.message}</p>}
+              {errors.townCity && <p className="text-red-500 text-sm">{typeof errors.townCity?.message === 'string' ? errors.townCity.message : ""}</p>}
           </div>
           <div className="flex flex-col text-[15px] sm:text-[16px] font-[Poppins] mt-4">
               <label>Phone Number<a className="text-red-500">*</a></label>
               <input {...register("phone", { required: "Phone number is required", pattern: { value: /^[0-9]{10}$/, message: "Enter a valid 10-digit phone number" } })} className="rounded bg-[#F5F5F5] p-2 w-full sm:max-w-[470px] mt-2" />
-              {errors.phone && <p className="text-red-500 text-sm">{errors.phone.message}</p>}
+              {errors.phone && <p className="text-red-500 text-sm">{typeof errors.phone?.message === 'string' ? errors.phone.message : ""}</p>}
           </div>
           <div className="flex flex-col text-[15px] sm:text-[16px] font-[Poppins] mt-4">
               <label>Email Address<a className="text-red-500">*</a></label>
               <input {...register("email", { required: "Email is required", pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Invalid email" } })} className="rounded bg-[#F5F5F5] p-2 w-full sm:max-w-[470px] mt-2" />
-              {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+              {errors.email && <p className="text-red-500 text-sm">{typeof errors.email?.message === 'string' ? errors.email.message : ""}</p>}
           </div>            
           <div className="flex items-center text-[15px] sm:text-[16px] font-[Poppins] mt-4">
               <input

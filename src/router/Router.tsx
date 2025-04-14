@@ -8,7 +8,7 @@ const RouterContent = () => {
 
 export const Router = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/R2S-Client">
       <RouterContent />
     </BrowserRouter>
   )
