@@ -3,6 +3,8 @@
   "homepage": "https://anhquan268.github.io/R2S-Client",
   "version": "0.0.0",
   "scripts": {
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview --port 3000",
@@ -46,6 +48,7 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-watch": "^8.0.0",
+    "gh-pages": "^6.3.0",
     "husky": "^9.1.7",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
