@@ -1,20 +1,21 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "allowSyntheticDefaultImports": true
+    "target": "ESNext",                    // Specifies the target JavaScript version
+    "useDefineForClassFields": true,        // Ensures that class fields are correctly defined
+    "lib": ["DOM", "DOM.Iterable", "ESNext"], // Includes necessary libraries
+    "allowJs": false,                       // Disallows JavaScript files in the project
+    "skipLibCheck": true,                   // Skips type checking of declaration files
+    "esModuleInterop": true,                // Enables ES module interoperability
+    "strict": true,                         // Enables all strict type-checking options
+    "forceConsistentCasingInFileNames": true, // Ensures consistent casing in file names
+    "module": "ESNext",                     // Ensures you're using the latest module system
+    "moduleResolution": "Node",             // Resolves modules using Node.js conventions
+    "resolveJsonModule": true,              // Allows importing JSON files as modules
+    "isolatedModules": true,                // Ensures each file can be transpiled independently
+    "noEmit": true,                         // Do not output any compiled files
+    "jsx": "react-jsx",                     // Use the new JSX transform introduced in React 17
+    "allowSyntheticDefaultImports": true    // Allows default imports for modules without a default export
   },
-  "include": ["./src"]
+  "include": ["./src"],                      // Specifies the files or folders to include
+  "exclude": ["node_modules", "build"]       // Optionally exclude unwanted files or folders
 }

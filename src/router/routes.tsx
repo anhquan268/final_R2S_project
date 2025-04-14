@@ -17,7 +17,7 @@ const PrivateRoute = ({ children }: { children: JSX.Element }) => {
   return isLoggedIn && user.roles[0] === "ADMIN" ? children : <Navigate to="/login" />;
 };
 
-export const routes: RouteObject[] = [
+export const routes = [
   {
     path: "/",
     element: <HomePage />,

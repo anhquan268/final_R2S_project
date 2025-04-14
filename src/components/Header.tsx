@@ -105,7 +105,7 @@ const Header: React.FC = () => {
         {/* Biểu tượng giỏ hàng và yêu thích */}
         <div className="flex items-center space-x-4 relative">
             <img src="/R2S-Client/Wishlist.svg" alt="Favorite" className="w-[32px] h-[32px] cursor-pointer" tabIndex={0}/>
-            <a href="/cart" className="relative">
+            <a href="/R2S-Client/cart" className="relative">
               <img src="/R2S-Client/Cart1.svg" alt="Cart" className="w-[32px] h-[32px] cursor-pointer" tabIndex={0} />
               {cartCount > 0 && (
               <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
@@ -122,7 +122,7 @@ const Header: React.FC = () => {
                 timeoutId = setTimeout(() => setIsOpen(false), 200); // Trì hoãn 1 giây trước khi đóng
               }}
             >              
-              <a href={isLoggedIn ? "/profile" : "/login"} className="flex items-center">
+              <a href={isLoggedIn ? "/R2S-Client/profile" : "/R2S-Client/login"} className="flex items-center">
               <img
                 src={isLoggedIn ? "/R2S-Client/userlogged.svg" : "/R2S-Client/user.svg"}
                 alt="User"
@@ -134,7 +134,7 @@ const Header: React.FC = () => {
               className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg py-2 border z-50"
               style={{ position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", minWidth: "200px" }}
               >
-                <a href="/profile" className="block px-4 py-2 hover:bg-gray-100">
+                <a href="/R2S-Client/profile" className="block px-4 py-2 hover:bg-gray-100">
                   My Profile
                 </a>
                 <a href="#" className="block px-4 py-2 hover:bg-gray-100">
@@ -143,7 +143,7 @@ const Header: React.FC = () => {
                 <a href="#" className="block px-4 py-2 hover:bg-gray-100">
                   My Cancellations
                 </a>               
-                <a href="/login" onClick={handleLogout} className="block px-4 py-2 hover:bg-gray-100">
+                <a href="/R2S-Client/login" onClick={handleLogout} className="block px-4 py-2 hover:bg-gray-100">
                   Log Out
                 </a>
               </div>
@@ -155,21 +155,21 @@ const Header: React.FC = () => {
       <nav className="md:hidden flex items-center justify-center max-w-7xl mx-auto p-2">
         {/* Danh mục menu */}
         <div className="space-x-8 text-[16px]">
-          <a href={isAdmin ? "/productmanage" : "/"} className="hover:border-b-2 hover:border-black">Home</a>
+          <a href={isAdmin ? "/R2S-Client/productmanage" : "/R2S-Client/"} className="hover:border-b-2 hover:border-black">Home</a>
           {isAdmin ? (
-            <a href="/ordermanage" className="hover:border-b-2 hover:border-black">Orders</a>
+            <a href="/R2S-Client/ordermanage" className="hover:border-b-2 hover:border-black">Orders</a>
           ) : (
             <a href="#" className="hover:border-b-2 hover:border-black">About</a>
           )}
           {isLoggedIn ? (
-            <a href="/chat" className="hover:border-b-2 hover:border-black">Contact</a>
+            <a href="/R2S-Client/chat" className="hover:border-b-2 hover:border-black">Contact</a>
           ) : (
-            <a href="/login" className="hover:border-b-2 hover:border-black">Sign In</a>
+            <a href="/R2S-Client/login" className="hover:border-b-2 hover:border-black">Sign In</a>
           )}
           {isLoggedIn ? (
-            <a href="/profile" className="hover:border-b-2 hover:border-black">Account</a>
+            <a href="/R2S-Client/profile" className="hover:border-b-2 hover:border-black">Account</a>
           ) : (
-            <a href="/signup" className="hover:border-b-2 hover:border-black">Sign Up</a>
+            <a href="/R2S-Client/signup" className="hover:border-b-2 hover:border-black">Sign Up</a>
           )}
         </div>
       </nav>
