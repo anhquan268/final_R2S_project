@@ -169,10 +169,11 @@ const OrderManage = () => {
                     <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">{order.address}</td>
                     <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">${order.total_amount}</td>
                     <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px] text-center">{order.status}</td>
-                    <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px] space-x-2">
+                    <td className="p-2 md:p-4 w-fit text-[12px] md:text-[16px]">
+                      <div className="flex flex-col lg:flex-row lg:space-x-2 items-center justify-center space-y-2 lg:space-y-0">
                       {order.status === "pending" && (
                         <button
-                          className="bg-green-500 text-white px-3 py-1 rounded"
+                          className="bg-green-500 text-white text-center px-3 py-1 rounded w-[95px]"
                           onClick={() => mutationUpdate.mutate({ orderId: order.id, status: 'done' })}
                         >
                           Approve
@@ -186,11 +187,12 @@ const OrderManage = () => {
                           Refuse
                         </button>*/}
                       <button
-                        className="bg-red-500 text-white px-3 py-1 rounded"
+                        className="bg-red-500 text-white px-3 py-1 rounded w-[95px]"
                         onClick={() => mutationDelete.mutate(order.id)}
                       >
                         Delete
                       </button>
+                      </div>
                     </td>
                   </tr>
                 )))}
