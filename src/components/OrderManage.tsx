@@ -106,9 +106,18 @@ const OrderManage = () => {
       return { previousOrders };
     },
   
-    onSuccess: () => {
+    onSuccess: (_data, orderId) => {
+      // Ensure order is not in cache after deletion
+      const currentOrders = queryClient.getQueryData<Order[]>(["orders"]);
+      if (currentOrders) {
+        queryClient.setQueryData<Order[]>(
+          ["orders"],
+          currentOrders.filter((order) => order.id !== orderId)
+        );
+      }
+  
       toast.success("Order deleted successfully", { autoClose: 1500 });
-    },
+    },  
   
     onError: (_error, orderId, context) => {
       toast.error("Failed to delete order");
@@ -120,7 +129,6 @@ const OrderManage = () => {
   
     onSettled: () => {
       setLoadingOrderId(null);
-      queryClient.invalidateQueries({ queryKey: ["orders"] });
     },
   });
 
