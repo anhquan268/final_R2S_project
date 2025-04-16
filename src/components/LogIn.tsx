@@ -14,6 +14,10 @@ const LogIn = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    navigate("/login")
+  }
 
   // Gọi API đăng nhập
   const loginUser = async ({ email, password }: { email: string; password: string }) => {
@@ -104,7 +108,7 @@ const LogIn = () => {
               <button type="submit" disabled={isPending} className="w-[143px] bg-red-500 text-white py-2 rounded text-[16px]">
                 {isPending ? "Logging in..." : "Log In"}
               </button>
-              <a href="/forgot-password" className="text-red-500 md:ml-8 lg:ml-0">Forgot Password?</a>
+              <a href="#" onClick={handleClick} className="text-red-500 md:ml-8 lg:ml-0">Forgot Password?</a>
             </div>
           </form>
         </div>

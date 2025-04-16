@@ -26,6 +26,11 @@ const SignUp = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleClick1 = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    navigate("/login")
+  }
+
   // Hàm gọi API đăng ký
   const registerUser = async (formData: { email: string; password: string; name: string; address: string }) => {
     if (!validatePassword(formData.password)) {
@@ -142,7 +147,7 @@ const SignUp = () => {
 
           <p className="mt-4 text-center text-gray-700">
             Already have an account?
-            <a href="/login" className="text-black ml-4 hover:border-b-2 hover:border-black">
+            <a href="#" onClick={handleClick1} className="text-black ml-4 hover:border-b-2 hover:border-black">
               Log in
             </a>
           </p>
