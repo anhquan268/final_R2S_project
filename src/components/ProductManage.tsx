@@ -191,7 +191,10 @@ const ProductManage = () => {
       }
   
       toast.success("Product deleted successfully!", {autoClose: 1500});
-      refetch();
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1600);
     } catch (error: any) {
       toast.error("Failed to delete product!");
       console.error("Delete error:", error);
